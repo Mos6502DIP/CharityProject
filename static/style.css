@@ -1,0 +1,41 @@
+body {
+    margin: 0px !important;
+    font-family: "Roboto Serif", serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100,
+        "GRAD" 0;
+
+}
+
+
+
+.intro {
+    color: #ffffff;
+    height: 35em;
+    background-image: url('/static/media/landing_banner.jpeg');
+    background-size: cover;
+        position: relative;
+}
+
+.intro-box {
+    width: 50%;
+    box-shadow: 3px 4px 4px #000000c2;
+    padding: 10px;
+    background-color: rgba(43, 43, 43, 0.83);
+    position: absolute;
+    top: 12%;
+    left: 5%;
+}
+
+.intro-box h1 {
+    font-size: 4.5em;
+    margin: 0px;
+}
+
+.intro-box p {
+    font-size: 1.2em;
+    margin: 0px;
+}
