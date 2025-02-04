@@ -1,12 +1,9 @@
 body {
     margin: 0px !important;
-    font-family: "Roboto Serif", serif;
+    font-family: "Playfair Display", serif;
     font-optical-sizing: auto;
-    font-weight: normal;
+    font-weight: 500;
     font-style: normal;
-    font-variation-settings:
-        "wdth" 100,
-        "GRAD" 0;
 
 }
 
@@ -38,4 +35,21 @@ body {
 .intro-box p {
     font-size: 1.2em;
     margin: 0px;
+}
+
+.nav-bar {
+    display: flex;
+    height: 5vh;
+    padding: 2vh;
+    justify-content: space-evenly
+}
+
+.nav-image {
+    height: 100%;
+    width: auto;
+}
+
+.nav-item {
+    color: #000000c2;
+    align-self: center;
 }
