@@ -12,6 +12,10 @@ h2 {
     text-align: center;
 }
 
+.content {
+    box-shadow: inset 0px 7px 3px -3px rgba(50, 50, 50, 0.75);
+}
+
 .intro {
     color: #ffffff;
     height: 30em;

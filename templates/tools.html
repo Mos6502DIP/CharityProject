@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block page_name %}Admin Tools{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{url_for('static', filename='admin.css')}}">
+{% endblock %}
+
+{% block content %}
+    <a class="tool-link" href="/add-place">Add Place</a>
+{% endblock %}
