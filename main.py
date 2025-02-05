@@ -67,7 +67,7 @@ def attraction_adder():
         
             return "Uploaded"
         else: 
-            return render_template("add_attraction.html", admin=session.get('admin'))
+            return render_template("add_place.html", admin=session.get('admin'))
             
     else:
         return "Access denied"

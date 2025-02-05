@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block page_name %}Add place{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post" id="add-type" enctype="multipart/form-data">
+        <p>Name</p>
+        <div class="ui left icon input">
+            <input type="text" name="name">
+            <i class="ticket icon"></i>
+        </div>
+        <p>Description</p>
+        <div class="ui left icon input">
+            <textarea name="description" cols="40" rows="5"></textarea>
+        </div>
+        
+
+        <br>
+        <label for="thumbnail">Thumbnail</label>
+        <input type="file" name="thumbnail">
+        <label for="banner">Banner</label>
+        <input type="file" name="banner">
+
+        <a onclick="AddType()"><div class="ui button">Add</div>
+        
+    </form>
+{% endblock %}

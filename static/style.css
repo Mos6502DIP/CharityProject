@@ -69,6 +69,7 @@ h2 {
 
 .cards-simple {
     display: flex;
+    flex-wrap: wrap;
     height: fit-content;
     padding: 2vh;
     justify-content: center;
