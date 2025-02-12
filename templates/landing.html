@@ -18,15 +18,12 @@
     </div>
     <h2>Great Places to Explore</h2>
     <div class="cards-simple">
-        <div class="card" style="background-image: url('static/media/place_thumbnails/blickling.jpg')">
-            <p>Blickling</p>
-        </div>
-        <div class="card" style="background-image: url('static/media/place_thumbnails/blickling.jpg')">
-            <p>Blickling</p>
-        </div>
-        <div class="card" style="background-image: url('static/media/place_thumbnails/blickling.jpg')">
-            <p>Blickling</p>
-        </div>
+        {% for place in places %}
+            {% set image = 'static/media/place_images/' + places[place]['Thumbnail'] %}
+            <div class="card" style="background-image: url('{{ image }}');">
+                <p>{{ place }}</p>
+            </div>
+        {% endfor %}
     </div>
 
     

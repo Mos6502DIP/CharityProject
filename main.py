@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 app.secret_key = 'National Trust'
 
-app.config['UPLOAD_FOLDER'] = '/static/media/place_images'
+app.config['UPLOAD_FOLDER'] = '.\static\media\place_images'
 
 ## Function Tools
 
@@ -29,11 +29,40 @@ def column_check(table, database, column, data):
 def add_place(name, type, description, adult_price, child_price, facilities, thumbnail_name, banner_name):
     connection = sqlite3.Connection('places.db')
     cursor =  connection.cursor()
-    cursor.execute("INSERT INTO Places (name, type, description, thumbnail_name, banner_name, adult_price, child_price, facilities) VALUES(?, ?, ?, ?, ?, ?, ?, ?)", 
+    facilities = json.dumps(facilities)
+    cursor.execute("INSERT INTO Places (name, type, description, thumbnail_image, banner_image, adult_price, child_price, facilities) VALUES(?, ?, ?, ?, ?, ?, ?, ?)", 
     (name, type, description, thumbnail_name, banner_name, adult_price, child_price, facilities))
 
     connection.commit()
     return True
+
+def get_places_random(number):
+    places = {}
+    connection = sqlite3.Connection('places.db')
+    cursor =  connection.cursor()
+    cursor.execute("SELECT name, thumbnail_image FROM Places ORDER BY RANDOM() LIMIT ?;", (number, ))
+    result = cursor.fetchall()
+    for place in result:
+        places[place[0]] = {
+            "Thumbnail" : place[1]
+        }
+
+    return places
+
+def get_places():
+    places = {}
+    connection = sqlite3.Connection('places.db')
+    cursor =  connection.cursor()
+    cursor.execute("SELECT name, thumbnail_image, description, type FROM Places ORDER BY name;")
+    result = cursor.fetchall()
+    for place in result:
+        places[place[0]] = {
+            "Thumbnail" : place[1],
+            "Description" : place[2],
+            "Type" : place[3]
+        }
+
+    return places
 
 ## Routing for admin
 
@@ -126,9 +155,14 @@ def attraction_adder():
 
 @app.route('/')
 def landing():
-    return render_template('landing.html', admin=session.get('admin'))
+    places = get_places_random(3)
+    print(places)
+    return render_template('landing.html', admin=session.get('admin'), places=places)
 
-
+@app.route('/places')
+def places():
+    places = get_places()
+    return render_template('places.html', admin=session.get('admin'), places=places)
 
 
 if __name__ == '__main__':

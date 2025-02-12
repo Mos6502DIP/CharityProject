@@ -35,6 +35,8 @@ h2 {
     left: 5%;
 }
 
+
+
 .intro-box h1 {
     font-size: 4.5em;
     margin: 0px;
@@ -42,6 +44,27 @@ h2 {
 
 .intro-box p {
     font-size: 1.2em;
+    margin: 0px;
+}
+
+.banner {
+    color: #ffffff;
+    height: 20em;
+    background-image: url('/static/media/landing_banner.jpeg');
+    background-size: cover;
+    box-shadow: inset 0 0 10px #000000;
+    align-items: center;
+}
+
+.banner-text {
+    width: 50%;
+    box-shadow: 3px 4px 4px #000000c2;
+    padding: 10px;
+    background-color: rgba(43, 43, 43, 0.83);
+}
+
+.banner-text h1 {
+    font-size: 4.5em;
     margin: 0px;
 }
 

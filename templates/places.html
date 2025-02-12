@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block page_name %}Landing{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="banner">
+        <div class="banner-text">
+            <h1>Great Places To Visit</h1>
+        </div>     
+    </div>
+    <h2>Great Places to Explore</h2>
+    <div class="cards-advanced">
+        {% for place in places %}
+            {% set image = 'static/media/place_images/' + places[place]['Thumbnail'] %}
+            <div class="card">
+                <p>{{ place }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
