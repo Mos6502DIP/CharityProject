@@ -3,29 +3,51 @@
 {% block page_name %}Add place{% endblock %}
 
 {% block head %}
-
+    <link rel="stylesheet" href="{{url_for('static', filename='admin.css')}}">
 {% endblock %}
 
 {% block content %}
-    <form action="" method="post" id="add-type" enctype="multipart/form-data">
+    <form id="add-place" method="post" id="add-place" enctype="multipart/form-data">
+        <br>
         <p>Name</p>
-        <div class="ui left icon input">
-            <input type="text" name="name">
-            <i class="ticket icon"></i>
-        </div>
-        <p>Description</p>
-        <div class="ui left icon input">
-            <textarea name="description" cols="40" rows="5"></textarea>
-        </div>
-        
+        <input type="text" name="name">
 
+        <p>Type</p>
+        <input type="text" name="type">
+        
+        <p>Description</p>
+
+        <textarea name="description" cols="40" rows="5"></textarea>
+        
+        <p>Adult Price</p>
+        <input type="text" name="adult-price">
+
+        <p>Child Price</p>
+        <input type="text" name="child-price">
+
+        <p>Wheel Chair friendly</p>
+        <input type="checkbox" name="wheelz">
+        <br>
+        <textarea name="description-wheelchairs" cols="40" rows="5"></textarea>
+
+        <p>Cafe</p>
+        <input type="checkbox" name="cafe">
+
+        <p>Shop</p>
+        <input type="checkbox" name="shop">
+
+        <p>Toilet</p>
+        <input type="checkbox" name="toilet">
+        
+    
         <br>
         <label for="thumbnail">Thumbnail</label>
         <input type="file" name="thumbnail">
+        <br>
         <label for="banner">Banner</label>
         <input type="file" name="banner">
-
-        <a onclick="AddType()"><div class="ui button">Add</div>
+        <br>
+        <button onclick="submit">Add</button>
         
     </form>
 {% endblock %}

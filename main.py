@@ -25,6 +25,15 @@ def column_check(table, database, column, data):
         return True
     else:
         return False
+    
+def add_place(name, type, description, adult_price, child_price, facilities, thumbnail_name, banner_name):
+    connection = sqlite3.Connection('places.db')
+    cursor =  connection.cursor()
+    cursor.execute("INSERT INTO Places (name, type, description, thumbnail_name, banner_name, adult_price, child_price, facilities) VALUES(?, ?, ?, ?, ?, ?, ?, ?)", 
+    (name, type, description, thumbnail_name, banner_name, adult_price, child_price, facilities))
+
+    connection.commit()
+    return True
 
 ## Routing for admin
 
@@ -58,14 +67,55 @@ def admin_logout():
 def attraction_adder():
     if session.get('admin'):
         if request.method == 'POST':
+            name = request.form['name']
+            type = request.form['type']
+            description = request.form['description']
+            adult_price = request.form['adult-price']
+            child_price = request.form['child-price']
+
+            facilities = {}
+
+            if request.form.get("wheelz") == "on":
+                facilities['Disabilities'] = {
+                    'friendly' : True,
+                    'description' : request.form['description-wheelchairs']
+                }
+            else:
+                facilities['Disabilities'] = {
+                    'friendly' : False,
+                    'description' : request.form['description-wheelchairs']
+                }
+                
+            if request.form.get("cafe") == "on":
+                facilities['Cafe'] = True
+            else:
+                facilities['Cafe'] = False
+
+            if request.form.get("shop") == "on":
+                facilities['Shop'] = True
+            else:
+                facilities['Shop'] = False
+
+            if request.form.get("toilet") == "on":
+                facilities['Toilet'] = True
+            else:
+                facilities['Toilet'] = False
+            
+
             thumbnail = request.files['thumbnail']
             banner = request.files['banner']
-            thumbnail_path = os.path.join(app.config['UPLOAD_FOLDER'], get_extension(thumbnail.filename))
-            banner_path = os.path.join(app.config['UPLOAD_FOLDER'], get_extension(banner.filename))
+
+            thumbnail_name = f"thumbnail_{name}.{get_extension(thumbnail.filename)}"
+            banner_name  = f"banner_{name}.{get_extension(banner.filename)}"
+            thumbnail_path = os.path.join(app.config['UPLOAD_FOLDER'], thumbnail_name)
+            banner_path = os.path.join(app.config['UPLOAD_FOLDER'], banner_name)
             thumbnail.save(thumbnail_path)
             banner.save(banner_path)
-        
-            return "Uploaded"
+
+            if add_place(name, type, description, adult_price, child_price, facilities, thumbnail_name, banner_name):
+                return render_template("add_place.html", admin=session.get('admin'))
+            else:
+                return '505 Error something went wrong.'
         else: 
             return render_template("add_place.html", admin=session.get('admin'))
             
