@@ -119,5 +119,44 @@ h2 {
     }
 }
 
+.cards-advanced {
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    padding: 2vh;
+    justify-content: center;
+    gap: 5vw;
+    color: #ffffff;
+
+    .card {
+        width: 25vw;
+        height: 30vw;
+        background-color: rgba(0, 0, 0);
+        border-radius: 10px;
+    }
+
+    .card img {
+        width: 100%;
+        height: 25vw;
+        object-fit: cover;
+        position: relative;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .card p{
+        text-align: center;
+        font-size: 1.5em;
+        margin: 0px;
+    }
+
+    .card h1{
+        margin: 0px;
+        font-size: 30px;
+        text-align: center;
+    }
+}
+
+
 
 

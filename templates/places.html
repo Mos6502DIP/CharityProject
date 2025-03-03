@@ -15,9 +15,12 @@
     <h2>Great Places to Explore</h2>
     <div class="cards-advanced">
         {% for place in places %}
-            {% set image = 'static/media/place_images/' + places[place]['Thumbnail'] %}
+            {% set image = '/media/place_images/' + places[place]['Thumbnail'] %}
             <div class="card">
-                <p>{{ place }}</p>
+                <img src="{{url_for('static', filename=image)}}"/>
+                <h1>{{ place }}</h1>
+                <p>{{ places[place]['Type'] }}</p>
+
             </div>
         {% endfor %}
     </div>
